@@ -1,25 +1,42 @@
 package com.sudhar.examples;
 
-class Queue<T> {
-    T t;
 
-    public T getT() {
-        return t;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BlockingQueue<T> {
+
+    final Queue<T> queue = new LinkedList<>();
+    int threshold = 25;
+
+    public BlockingQueue(int threshold) {
+        this.threshold = threshold;
     }
 
-    public void setT(T t) {
-        this.t = t;
-    }
-
-    public T get() {
-        synchronized (t) {
+    public void enqueue(T t) throws InterruptedException {
+        if (this.queue.size() == threshold) {
+            wait();
         }
-        return null;
+
+        if (this.queue.size() == 0) {
+            notifyAll();
+        }
+
+        this.queue.add(t);
     }
-}
-public class BlockingQueue {
+
+    public T dequeue() throws InterruptedException {
+        if (this.queue.size() == 0) {
+            wait();
+        }
+
+        if (this.queue.size() == threshold) {
+            notifyAll();
+        }
+
+        return this.queue.poll();
+    }
 
     public static void main(final String[] args) {
-
     }
 }

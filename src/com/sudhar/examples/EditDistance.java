@@ -19,9 +19,9 @@ public class EditDistance {
         if (s1.charAt(m-1) == s2.charAt(n-1)) {
             return editDistance(s1, s2, m-1, n-1);
         }
-        return 1 + min(editDistance(s1, s2, m-1, n),
-                editDistance(s1, s2, m, n-1),
-                editDistance(s1, s2, m-1, n-1));
+        return 1 + min(editDistance(s1, s2, m-1, n), // Insert
+                editDistance(s1, s2, m, n-1), // Remove
+                editDistance(s1, s2, m-1, n-1)); // Replace
      }
 
     private static int min(int x, int y, int z) {

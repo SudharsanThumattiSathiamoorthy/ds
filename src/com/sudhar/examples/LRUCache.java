@@ -1,7 +1,9 @@
 package com.sudhar.examples;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 class Cache<K, V> {
     K key;
