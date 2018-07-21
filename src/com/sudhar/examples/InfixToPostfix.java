@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class InfixToPostfix {
     public static void main(final String[] args) {
-        final String ip = "a*b+c";
+        final String ip = "(a*b)+c";
 
         convertInfixToPostfix(ip);
         System.out.println();
