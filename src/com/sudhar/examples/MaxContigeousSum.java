@@ -7,15 +7,29 @@ public class MaxContigeousSum {
 
         int max = 0, max_so_far = 0;
 
-        for (int i = 0; i < a.length; i++) {
+//        for (int i = 0; i < a.length; i++) {
+//            max += a[i];
+//            if (max_so_far < max) {
+//                max_so_far = max;
+//            }
+//            if (max < 0) {
+//                max = 0;
+//            }
+//        }
+//        System.out.println(max_so_far);
+
+        for (int i = 0; i < a.length;i++) {
             max += a[i];
-            if (max_so_far < max) {
+
+            if (max > max_so_far) {
                 max_so_far = max;
             }
+
             if (max < 0) {
                 max = 0;
             }
         }
+
         System.out.println(max_so_far);
     }
 }

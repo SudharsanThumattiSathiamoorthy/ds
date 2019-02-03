@@ -10,8 +10,8 @@ public class CoinChangeRecursion {
         System.out.println(computeCoinsCount(amount, 0));
     }
 
-    private static int computeCoinsCount(int amount, int currentCoin) {
 
+    private static int computeCoinsCount(int amount, int currentIndex) {
         if (amount == 0) {
             return 1;
         }
@@ -20,11 +20,10 @@ public class CoinChangeRecursion {
             return 0;
         }
 
-        int combinations = 0;
-        for (int coin = currentCoin; coin < coins.length; coin++) {
-            combinations += computeCoinsCount(amount - coins[coin], coin);
+        int coinsCount = 0;
+        for(int i = currentIndex; i < coins.length; i++) {
+            coinsCount += computeCoinsCount(amount - coins[i], currentIndex);
         }
-
-        return combinations;
+        return coinsCount;
     }
 }
