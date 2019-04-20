@@ -4,10 +4,8 @@ public class BitManipulation {
 
     public static void main(final String args[]) {
         int x  = -5;
-        int y = ~x;
+        int y = ~x + 1;
 
-        int z = x + y;
-
-        System.out.println(z);
+        System.out.println(y);
     }
 }

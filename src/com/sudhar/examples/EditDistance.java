@@ -43,13 +43,13 @@ public class EditDistance {
             return m;
         }
 
-        if (s1.charAt(m-1) == s2.charAt(n-1)) {
-            return editDistance(s1, s2, m-1, n-1);
+        if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
+            return editDistance(s1, s2, m - 1, n - 1);
         }
 
-        return 1 + min(editDistance(s1, s2, m,n -1),
-                editDistance(s1, s2, m-1, n),
-                editDistance(s1, s2, m-1, n-1));
+        return 1 + min(editDistance(s1, s2, m, n - 1),
+                editDistance(s1, s2, m - 1, n),
+                editDistance(s1, s2, m - 1, n - 1));
     }
 
     private static int min(final int x, final int y, final int z) {

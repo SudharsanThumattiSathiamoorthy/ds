@@ -14,7 +14,7 @@ public class Seggregate012 {
     public static void main(final String[] args) {
         final int a[] = {0, 1, 0, 1, 2, 2, 0};
 
-        int low = 0, mid = 0, high = a.length - 1;
+        int low = 0, mid = 1, high = a.length - 1;
 
         while (mid <= high) {
             switch (a[mid]) {
