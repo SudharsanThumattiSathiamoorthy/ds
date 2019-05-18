@@ -13,14 +13,16 @@ public class HeapSort {
     }
 
     private static void heapSort(int[] a) {
-
-        int n = a.length;
-
-        for (int i = a.length / 2 - 1; i >= 0; i--) {
-            heapify(a, i, n);
+        if (a == null || a.length == 0) {
+            return;
         }
 
-        for (int i = n - 1; i >= 0; i--) {
+        int n = a.length;
+        for (int i = a.length/ 2 - 1; i >= 0; i--) {
+            heapify(a, i, a.length);
+        }
+
+        for (int i = n-1; i >= 0; i--) {
             int temp = a[0];
             a[0] = a[i];
             a[i] = temp;
@@ -30,16 +32,17 @@ public class HeapSort {
     }
 
     private static void heapify(int[] a, int i, int n) {
-        int largest = i;
-        int li = 2 * i + 1;
-        int ri = 2 * i + 2;
+        int largest  = i;
 
-        if (li < n && a[li] > a[largest]) {
-            largest = li;
+        int lc = 2 * i + 1;
+        int rc = 2 * i + 2;
+
+        if (lc < n && a[lc] > a[largest]) {
+            largest = lc;
         }
 
-        if (ri < n && a[ri] > a[largest]) {
-            largest = ri;
+        if (rc < n && a[rc] > a[largest]) {
+            largest = rc;
         }
 
         if (largest != i) {
@@ -50,6 +53,45 @@ public class HeapSort {
             heapify(a, largest, n);
         }
     }
+
+//    private static void heapSort(int[] a) {
+//
+//        int n = a.length;
+//
+//        for (int i = a.length / 2 - 1; i >= 0; i--) {
+//            heapify(a, i, n);
+//        }
+//
+//        for (int i = n - 1; i >= 0; i--) {
+//            int temp = a[0];
+//            a[0] = a[i];
+//            a[i] = temp;
+//
+//            heapify(a, 0, i);
+//        }
+//    }
+//
+//    private static void heapify(int[] a, int i, int n) {
+//        int largest = i;
+//        int li = 2 * i + 1;
+//        int ri = 2 * i + 2;
+//
+//        if (li < n && a[li] > a[largest]) {
+//            largest = li;
+//        }
+//
+//        if (ri < n && a[ri] > a[largest]) {
+//            largest = ri;
+//        }
+//
+//        if (largest != i) {
+//            int temp = a[i];
+//            a[i] = a[largest];
+//            a[largest] = temp;
+//
+//            heapify(a, largest, n);
+//        }
+//    }
 
 //    private static void swap(int[] a, int i, int j) {
 //        int temp = a[i];

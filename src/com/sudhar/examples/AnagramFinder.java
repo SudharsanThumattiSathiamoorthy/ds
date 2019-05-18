@@ -12,68 +12,83 @@ class Anagram {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Anagram anagram = (Anagram) o;
-        return count == anagram.count &&
-                length == anagram.length;
+    public int hashCode() {
+        return Objects.hash(count, length);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(count, length);
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Anagram a = (Anagram) o;
+        return this.count == a.count && this.length == a.length;
     }
 }
 
 public class AnagramFinder {
 
-    private static int indexOf(char c) {
-        return 'a' - c;
-    }
+    private static String findCount(String word) {
+        int[] count = new int[26];
 
-    private static int findCount(String word) {
-        int count = 0;
+        char[] c = word.toCharArray();
+        Arrays.sort(c);
 
-        for (int i = 0; i < word.length(); i++) {
-            count += indexOf(word.charAt(i));
+        for (int i = 0; i < c.length; i++) {
+            count[indexOf(c[i])]++;
         }
 
-        return count;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < c.length; i++) {
+            sb.append("#");
+            sb.append(indexOf(c[i]));
+        }
+        return sb.toString();
+    }
+
+    private static int indexOf(char c) {
+        return c - 'a';
+    }
+
+    private static void anagramFinder(List<String> words) {
+        if (words == null || words.size() == 0) {
+            return;
+        }
+
+        Map<String, List<String>> map = new HashMap<>();
+
+        for (String word : words) {
+            if (word == null || word.length() == 0) {
+                continue;
+            }
+
+            String count = findCount(word);
+
+            if (map.containsKey(count)) {
+                List<String> existingWords = map.get(count);
+                existingWords.add(word);
+            } else {
+                List<String> existingWords = new ArrayList<>();
+                existingWords.add(word);
+
+                map.put(count, existingWords);
+            }
+        }
+
+        map.entrySet().stream()
+                .map(Map.Entry::getValue)
+                .forEach(System.out::println);
     }
 
     public static void main(final String[] args) {
 
-        List<String> input = List.of("geeksquiz", "geeksforgeeks",
-                "abcd", "forgeeksgeeks", "rats", "arts",
-                "zuiqkeegs");
+        List<String> input = List.of("eat", "tea", "tan", "ate", "nat", "bat");
 
-        anagramPair(input);
-    }
-
-    private static void anagramPair(final List<String> input) {
-        final Map<Anagram, List<String>> map = new HashMap<>();
-        input.forEach(word -> {
-
-            int count = findCount(word);
-
-            final Anagram anagram = new Anagram(count, word.length());
-
-            if (map.containsKey(anagram)) {
-                final List<String> words = map.get(anagram);
-                words.add(word);
-            } else {
-                final List<String> words = new ArrayList<>();
-                words.add(word);
-
-                map.put(anagram, words);
-            }
-        });
-
-        map.entrySet().stream()
-                .filter(e -> e.getValue().size() > 1)
-                .map(Map.Entry::getValue)
-                .forEach(System.out::println);
-
+        anagramFinder(input);
     }
 }

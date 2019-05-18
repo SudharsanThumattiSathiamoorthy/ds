@@ -1,5 +1,7 @@
 package com.sudhar.examples;
 
+import java.util.Arrays;
+
 public class LongestIncreasingSubsequence {
 
     public static void main(final String[] args) {
@@ -16,9 +18,7 @@ public class LongestIncreasingSubsequence {
         int lis[] = new int[arr.length];
         int i, j, max = lis[0];
 
-        for (i = 0; i < arr.length - 1; i++) {
-            lis[i] = 1;
-        }
+        Arrays.fill(lis, 1);
 
         for (i = 1; i < arr.length; i++) {
             for (j = 0; j < i; j++) {

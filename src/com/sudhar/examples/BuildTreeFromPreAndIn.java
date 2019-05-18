@@ -94,6 +94,8 @@ public class BuildTreeFromPreAndIn {
         Set<Integer> visitedLevels = new HashSet<>();
         queue.add(new NodeItem<>(node, 0));
 
+        System.out.println("Top View of the tree");
+
         while (!queue.isEmpty()) {
             NodeItem item = queue.poll();
             BST<Character> currNode = (BST<Character>)item.data;
@@ -113,7 +115,7 @@ public class BuildTreeFromPreAndIn {
         }
     }
 
-    static <T> void printBottomView(BST<Character> node) {
+    static void printBottomView(BST<Character> node) {
 
         int hd = 0;
 
@@ -139,20 +141,9 @@ public class BuildTreeFromPreAndIn {
 
         }
 
-//        for (Map.Entry<Integer, BST<Character>> entry: map.entrySet()) {
-//            System.out.print(entry.getValue() + " ");
-//        }
-
-        Set<Map.Entry<Integer, BST<Character>>> set = map.entrySet();
-
-        // Make an iterator
-        Iterator<Map.Entry<Integer, BST<Character>>> iterator = set.iterator();
-
-        // Traverse the map elements using the iterator.
-        while (iterator.hasNext())
-        {
-            Map.Entry<Integer, BST<Character>> me = iterator.next();
-            System.out.print(me+" ");
+        System.out.println(map);
+        for (Map.Entry<Integer, BST<Character>> entry: map.entrySet()) {
+            System.out.println(entry.getValue());
         }
     }
 }

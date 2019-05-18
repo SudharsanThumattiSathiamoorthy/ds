@@ -12,10 +12,10 @@ public class CoinsChangeDP {
         result[0] = 1;
 
         for (int coin: coins) {
-            for (int i = 0; i < result.length; i++) {
-                if (i >= coin) {
+            for (int i = coin; i < result.length; i++) {
+                //if (i >= coin) {
                     result[i] += result[i - coin];
-                }
+                //}
             }
         }
         return result[amount];

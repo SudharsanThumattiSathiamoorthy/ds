@@ -10,34 +10,23 @@ public class Seggregate01 {
     public static void main(final String[] args) {
         int a[] = {0, 1, 1, 0, 1, 1, 0};
 
-        int l = 0, h = a.length-1;
+        int l = 0, h = a.length - 1;
 
-        while (a[l] == 0) {
-            l++;
-        }
-
-        while (a[h] == 1) {
-            h--;
-        }
-
-        while(l < h) {
-            if (a[l] == 0) {
+        while (l < h) {
+            while (a[l] == 0) {
                 l++;
-            } else {
-                swap(a, l, h);
-                l++;
+            }
+
+            while (a[h] == 1) {
                 h--;
             }
 
-            if (a[h] == 1) {
-                h--;
-            } else {
+            if (l < h) {
                 swap(a, l, h);
                 l++;
                 h--;
             }
         }
-
 
         System.out.println(Arrays.toString(a));
     }
