@@ -6,19 +6,19 @@ import java.util.List;
 public class StringPermutation {
 
     public static void main(final String[] args) {
-        String str = "abc";
+        String s = "abc";
 
-        permute(str, "", 0);
+        permute(s, "", 0);
     }
 
     private static void permute(String s, String prefix, int ci) {
         System.out.println(prefix);
 
         for (int i = ci; i < s.length(); i++) {
-            String temp = s.substring(0, i) + s.substring(i+1);
             String tempPrefix = prefix + s.charAt(i);
+            String tempStr = s.substring(0, i) + s.substring(i+1);
 
-            permute(temp, tempPrefix, i);
+            permute(tempStr, tempPrefix, i);
         }
     }
 

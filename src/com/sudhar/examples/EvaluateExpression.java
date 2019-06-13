@@ -8,7 +8,7 @@ public class EvaluateExpression {
     public static void main(final String[] args) {
         final List<String> input = List.of("5", "1", "2", "+", "4", "*", "+", "3", "-" );
 
-        evaluateExpression(input);
+        System.out.println(evaluateExpression(input));
     }
 
     private static int evaluateExpression(List<String> inputList) {

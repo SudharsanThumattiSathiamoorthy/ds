@@ -13,7 +13,7 @@ public class DiameterOfTheTree {
         int ld = diameterOfThree(node.left);
         int rd = diameterOfThree(node.right);
 
-        return Math.max(1 + lh + rh, Math.max(ld, rd));
+        return Math.max(lh + rh, Math.max(ld, rd));
     }
 
     private static int height(Node node) {

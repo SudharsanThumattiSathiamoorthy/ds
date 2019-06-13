@@ -5,23 +5,26 @@ import java.util.Arrays;
 public class NLengthStringFromKLengthString {
 
     public static void main(final String[] args) {
-        final String ip = "ALGO";
-        int n = 2;
-        final char[] permutation = new char[n];
 
+        String s= "abc";
 
-        permutation(ip, permutation, n, 0);
+        int  n =2;
+
+        char[] permute = new char[n];
+
+        permute(s, permute, n, 0);
     }
 
+    private static void permute(String s, char[] permute, int n, int ci) {
 
-    private static void permutation(String ip, char[] permutation, int n, int ci) {
-        if (n <= 0) {
-            System.out.println(String.valueOf(permutation));
+        if (n == 0) {
+            System.out.println(Arrays.toString(permute));
         } else {
 
-            for (int i = ci; i < ip.length(); i++) {
-                permutation[n - 1] = ip.charAt(i);
-                permutation(ip, permutation, n - 1, i);
+            for (int i = ci; i < s.length(); i++) {
+                permute[n - 1] = s.charAt(i);
+
+                permute(s, permute, n - 1, i);
             }
         }
     }

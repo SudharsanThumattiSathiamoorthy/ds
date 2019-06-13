@@ -147,4 +147,86 @@ public class RemoveInvalidParentheses {
         }
         return stack.isEmpty();
     }
+
+    //////////////////////////////////////////////////////////////////
+    // Perfect solution - tested in leetcode
+    //////////////////////////////////////////////////////////////////
+
+
+
+//    class Solution {
+//        public List<String> removeInvalidParentheses(String s) {
+//            final List<String> emptyResult = new ArrayList<>();
+//            emptyResult.add("");
+//
+//            if (s == null || s.length() == 0) {
+//                return emptyResult;
+//            }
+//
+//            final Queue<String> queue = new LinkedList<>();
+//            final Set<String> visited = new HashSet<>();
+//
+//            queue.add(s);
+//            int max = -1;
+//            List<String> result = new ArrayList<>();
+//
+//            while(!queue.isEmpty()) {
+//                final String temp = queue.poll();
+//
+//                //visited.add(temp);
+//                if (temp.length() < max) {
+//                    break;
+//                }
+//
+//                if (!result.contains(temp) && isValidParathesis(temp)) {
+//                    result.add(temp);
+//                    max = temp.length();
+//                } else {
+//
+//                    for(int i = 0;i < temp.length(); i++) {
+//                        if (!isParanthesis(temp.charAt(i))) {
+//                            continue;
+//                        }
+//
+//                        String next = temp.substring(0, i) + temp.substring(i+1);
+//
+//                        if (!visited.contains(next)) {
+//                            queue.add(next);
+//                            visited.add(next);
+//                        }
+//                    }
+//                }
+//
+//            }
+//            return result.size() == 0 ? emptyResult : result;
+//        }
+//
+//        private boolean isParanthesis(char c) {
+//            return c == '(' || c == ')';
+//        }
+//
+//        private boolean isValidParathesis(final String s) {
+//            Stack<Character> stack = new Stack<>();
+//
+//            for (int i = 0; i < s.length(); i++) {
+//                if (s.charAt(i) == '(') {
+//                    stack.push(s.charAt(i));
+//                }
+//                else if (Character.isLetter(s.charAt(i))) {
+//                    continue;
+//                }
+//                else {
+//                    if (stack.isEmpty()) {
+//                        return false;
+//                    }
+//
+//                    Character c = stack.pop();
+//                    if (c == null || c == ')') {
+//                        return false;
+//                    }
+//                }
+//            }
+//            return stack.isEmpty();
+//        }
+//    }
 }
