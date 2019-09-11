@@ -6,7 +6,7 @@ public class InplaceStringPermutation {
 
     public static void main(final String[] args) {
 
-        char[] ip = "abc ".toCharArray();
+        char[] ip = "abc".toCharArray();
 
         permute(ip, 0, ip.length);
     }

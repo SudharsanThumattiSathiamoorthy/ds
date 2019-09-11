@@ -3,7 +3,7 @@ package com.sudhar.examples;
 public class CoinsChangeDP {
 
     public static void main(final String[] args) {
-        System.out.println(coinsChange(12, new int[] {1, 2, 5}));
+        System.out.println(coinsChange(5, new int[] {1, 2, 5}));
     }
 
     private static int coinsChange(int amount, int[] coins) {
@@ -12,10 +12,10 @@ public class CoinsChangeDP {
         result[0] = 1;
 
         for (int coin: coins) {
-            for (int i = coin; i < result.length; i++) {
-                //if (i >= coin) {
+            for (int i = 1; i <= amount; i++) {
+               if (i >= coin) {
                     result[i] += result[i - coin];
-                //}
+               }
             }
         }
         return result[amount];

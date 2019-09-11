@@ -2,8 +2,8 @@ package com.sudhar.examples;
 
 public class CoinChangeRecursion {
 
-    static int[] coins = {1,2};
-    static int amount = 4;
+    static int[] coins = {1,2,5};
+    static int amount = 5;
     public static void main(final String[] args) {
 
 

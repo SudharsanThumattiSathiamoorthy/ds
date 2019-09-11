@@ -21,7 +21,7 @@ public class WallsAndFences {
 
         boolean[][] visited = new boolean[r][c];
 
-        for (int i=0; i < r; i++) {
+        for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
                 if (a[i][j] == 0) {
                     fillDistances(a, visited, i, j, r, c, 0);
@@ -30,13 +30,12 @@ public class WallsAndFences {
         }
 
         printArray(a);
-
     }
 
     private static void printArray(int[][] a) {
 
         for (int i = 0; i < a.length; i++) {
-            for (int j=0; j < a[0].length; j++) {
+            for (int j = 0; j < a[0].length; j++) {
                 System.out.print(a[i][j] + " ");
             }
             System.out.println();
@@ -67,10 +66,10 @@ public class WallsAndFences {
             a[i][j] = distance > a[i][j] ? a[i][j] : distance;
         }
 
-        fillDistances(a, visited, i+1, j, r, c, distance +1);
-        fillDistances(a, visited, i-1, j, r, c, distance +1);
-        fillDistances(a, visited, i, j+1, r, c, distance +1);
-        fillDistances(a, visited, i, j-1, r, c, distance +1);
+        fillDistances(a, visited, i + 1, j, r, c, distance + 1);
+        fillDistances(a, visited, i - 1, j, r, c, distance + 1);
+        fillDistances(a, visited, i, j + 1, r, c, distance + 1);
+        fillDistances(a, visited, i, j - 1, r, c, distance + 1);
 
         visited[i][j] = false;
     }

@@ -13,23 +13,22 @@ public class BinaryTree {
         return isBST(root);
     }
 
-    boolean isBST(Node node)
-    {
-        if (node != null) {
-
-            if (!isBST(node.left)) {
-                return false;
-            }
-
-            if (prev != null && node.data <= prev.data) {
-                return false;
-            }
-
-            prev = node;
-
-            return isBST(node.right);
+    boolean isBST(Node node) {
+        if (node == null) {
+            return true;
         }
-        return true;
+
+        if (!isBST(node.left)) {
+            return false;
+        }
+
+        if (prev != null && node.data <= prev.data) {
+            return false;
+        }
+
+        prev = node;
+
+        return isBST(node.right);
     }
 
     void bfs(Node root) {
@@ -40,7 +39,7 @@ public class BinaryTree {
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             Node curr = queue.poll();
 
             System.out.print(curr + " ");
@@ -52,6 +51,30 @@ public class BinaryTree {
                 queue.add(curr.right);
             }
         }
+    }
+
+    void dfs(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        Stack<Node> stack = new Stack<>();
+        stack.add(root);
+
+        System.out.print("\nDFS: ");
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+
+            System.out.print(node.data + " ");
+            if (node.right != null) {
+                stack.add(node.right);
+            }
+
+            if (node.left != null) {
+                stack.add(node.left);
+            }
+        }
+        System.out.println();
     }
 
     void printLevels() {
@@ -86,8 +109,8 @@ public class BinaryTree {
             levels.put(height, nodes);
         }
 
-        printLevels(root.left, levels, height+1);
-        printLevels(root.right, levels, height+1);
+        printLevels(root.left, levels, height + 1);
+        printLevels(root.right, levels, height + 1);
     }
 
     public static void main(final String[] args) {
@@ -103,9 +126,20 @@ public class BinaryTree {
         tree.root.right.left = new Node(8);
         tree.root.right.right = new Node(9);
 
-        System.out.println(tree.isBST());
+        BinaryTree tree1 = new BinaryTree();
+        tree1.root = new Node(5);
+        tree1.root.left = new Node(4);
+        tree1.root.right = new Node(6);
+
+        System.out.println("isBST : " + tree1.isBST());
 
         tree.bfs(tree.root);
+
+        tree.dfs(tree.root);
+
+        // top view
+
+        // bottom view
 
         tree.printLevels();
     }
