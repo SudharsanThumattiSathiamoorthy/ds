@@ -70,7 +70,7 @@ public class SubsetProblem {
 
         // Fill rest of the entries in dp[][]
         for (int i = 1; i < n; ++i) {
-            for (int j = 0; j < sum + 1; ++j) {
+            for (int j = 1; j < sum + 1; ++j) {
                 //boolean flag = arr[i] <= j;
                // if (flag) {
                     dp[i][j] = (dp[i - 1][j] || dp[i - 1][j - arr[i]]);

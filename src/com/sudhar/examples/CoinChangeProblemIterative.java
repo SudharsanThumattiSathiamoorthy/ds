@@ -11,10 +11,10 @@ public class CoinChangeProblemIterative {
 
         System.out.println(Arrays.toString(coins));
 
-        computeNoOfComibations();
+        computeNoOfCombinations();
     }
 
-    private static void computeNoOfComibations() {
+    private static void computeNoOfCombinations() {
 
         int combination[] = new int[amount + 1];
 

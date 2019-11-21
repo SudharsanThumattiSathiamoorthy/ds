@@ -16,9 +16,9 @@ public class DistributeCoins {
         distance = 0;
 
         node = new Node(1);
-        node.left = new Node(0);
-        node.right = new Node(0);
-        node.left.right = new Node(3);
+        node.left = new Node(1);
+        node.right = new Node(1);
+        node.left.right = new Node(1);
 
         distributeCoins(node);
         System.out.println(distance);
@@ -36,5 +36,4 @@ public class DistributeCoins {
 
         return left + right + node.data -1;
     }
-
 }

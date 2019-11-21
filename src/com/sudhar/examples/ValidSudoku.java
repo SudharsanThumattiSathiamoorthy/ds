@@ -1,5 +1,9 @@
 package com.sudhar.examples;
 
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 public class ValidSudoku {
 
     public static void main(final String[] args)
@@ -15,6 +19,22 @@ public class ValidSudoku {
                 {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
                 {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
         };
+
+        Deque<Character> queue = new LinkedList<>();
+        queue.addLast('c');
+        queue.addLast('a');
+        queue.addLast('b');
+        queue.addLast('e');
+        queue.addLast('f');
+
+        Iterator<Character> iterator = queue.descendingIterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+
+        System.out.println("Poll : "+ queue.pollFirst());
+
+        System.out.println(queue);
 
         System.out.println(isValidSudoku(board));
     }

@@ -3,6 +3,7 @@ package com.sudhar.examples;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class MeetingRoomII {
 
@@ -14,7 +15,7 @@ public class MeetingRoomII {
     }
 
     private static int findMeetingRooms(int[][] intervals) {
-        if (intervals == null || intervals.length == 0) {
+        if (intervals == null || intervals.length == 0 || intervals[0].length == 0) {
             return -1;
         }
 
@@ -25,7 +26,6 @@ public class MeetingRoomII {
 
         for (int[] v: intervals) {
             if (queue.isEmpty()) {
-                queue.add(v[1]);
                 count++;
             } else {
                 if (v[0] >= queue.peek()) {
@@ -33,10 +33,9 @@ public class MeetingRoomII {
                 } else {
                     count++;
                 }
-                queue.add(v[1]);
             }
+            queue.add(v[1]);
         }
-
         return count;
 
     }

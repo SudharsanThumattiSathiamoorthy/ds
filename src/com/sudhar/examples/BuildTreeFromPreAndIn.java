@@ -49,10 +49,10 @@ public class BuildTreeFromPreAndIn {
         for (int i = 0; i < post.length; i++) {
             map.put(post[i], i);
         }
-        final BST fromPostAndInorder = buildBSTFromPostAndIn(post, new int[]{post.length - 1}, map, 0, post.length - 1);
+        final BST fromPostAndInorder = buildBSTFromPostAndIn(post, new Integer(post.length-1), map, 0, post.length - 1);
 
         System.out.print("\nInorder traversal: ");
-        inOrder(node);
+        inOrder(fromPostAndInorder);
 
         System.out.print("\nPostorder traversal : ");
         postOrder(fromPostAndInorder);
@@ -88,12 +88,12 @@ public class BuildTreeFromPreAndIn {
         sb.delete(sb.length() - 3, sb.length());
     }
 
-    private static BST buildBSTFromPostAndIn(char[] post, int pointer[], Map<Character, Integer> map, int start, int end) {
+    private static BST buildBSTFromPostAndIn(char[] post, Integer pointer, Map<Character, Integer> map, int start, int end) {
         if (start > end) {
             return null;
         }
 
-        BST<Character> node = new BST<>(post[pointer[0]--]);
+        BST<Character> node = new BST<>(post[pointer--]);
 
         if (start == end) {
             return node;
