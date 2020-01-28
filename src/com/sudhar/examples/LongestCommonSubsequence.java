@@ -6,6 +6,7 @@ public class LongestCommonSubsequence {
         final String s1 = "saturday";
         final String s2 = "sunday";
 
+        StringBuffer sb = new StringBuffer();
         int lcs = lcs(s1, s2, s1.length(), s2.length());
         System.out.println(lcs);
     }

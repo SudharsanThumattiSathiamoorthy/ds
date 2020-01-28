@@ -43,45 +43,42 @@ public class PrintOddEven {
 
     public static void main(String[] args) {
 
-        PrintOddEven poe = new PrintOddEven();
-        poe.oddFlag = true;
-
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    poe.printOdd();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        Thread t2 = new Thread(() -> {
-            try {
-                poe.printEven();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-
-        t1.start();
-        t2.start();
-
-        try {
-            t1.join();
-            t2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        ExecutorService ex = Executors.newFixedThreadPool(5);
-        for (int i =1; i <=5; i++) {
-            PrintUsingExecutor pue = new PrintUsingExecutor();
-            ex.execute(pue);
-        }
-
-        ex.shutdown();
+//        PrintOddEven poe = new PrintOddEven();
+//        poe.oddFlag = true;
+//
+//        Thread t1 = new Thread(() -> {
+//            try {
+//                poe.printOdd();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//
+//        Thread t2 = new Thread(() -> {
+//            try {
+//                poe.printEven();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//
+//        t1.start();
+//        t2.start();
+//
+//        try {
+//            t1.join();
+//            t2.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ExecutorService ex = Executors.newFixedThreadPool(5);
+//        for (int i =1; i <=5; i++) {
+//            PrintUsingExecutor pue = new PrintUsingExecutor();
+//            ex.execute(pue);
+//        }
+//
+//        ex.shutdown();
 
         OddEven even = new OddEven(0);
         OddEven odd = new OddEven(1);

@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class SubstringConcatenation {
 
-    public static void main(final String[] args){
+    public static void main(final String[] args) {
         String s = "barfoothefoobarman";
-        String[] words = {"foo","bar"};
+        String[] words = {"foo", "bar"};
 
         System.out.println(findSubstring(s, words));
     }
@@ -25,13 +25,17 @@ public class SubstringConcatenation {
         }
         List result = new ArrayList<>();
         int wordLen = words[0].length();
+
         for (int i = 0; i < wordLen; i++) {
             int index = i;
+
             while (index + window <= s.length()) {
                 Map<String, Integer> newMap = new HashMap<>(map);
+
                 int endIndex = index + window, interrupt = 0;
                 while (endIndex > index) {
                     String str = s.substring(endIndex - wordLen, endIndex);
+
                     if (!newMap.containsKey(str) || newMap.get(str) <= 0) {
                         interrupt = 1;
                         break;
@@ -39,13 +43,16 @@ public class SubstringConcatenation {
                     newMap.put(str, newMap.get(str) - 1);
                     endIndex -= wordLen;
                 }
+
                 if (interrupt == 1) {
                     index = endIndex;
                     continue;
                 }
+
                 result.add(index);
                 index += wordLen;
             }
+
         }
         return result;
     }

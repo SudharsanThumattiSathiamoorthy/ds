@@ -7,11 +7,14 @@ public class EditDistance {
         final String s1 = "saturday";
         final String s2 = "sunday";
 
-        int distance = editDistance(s1, s2, s1.length(), s2.length());
+        StringBuffer sb = new StringBuffer();
+        int distance = editDistance(s1, s2, s1.length(), s2.length(), sb);
         System.out.println(distance);
+
+        System.out.println(sb.toString());
     }
 
-    private static int editDistance(final String s1, final String s2, int m, int n) {
+    private static int editDistance(final String s1, final String s2, int m, int n, StringBuffer sb) {
         if (m == 0) {
             return n;
         }
@@ -21,12 +24,13 @@ public class EditDistance {
         }
 
         if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
-            return editDistance(s1, s2, m - 1, n - 1);
+            sb.append(s1.charAt(m-1));
+            return editDistance(s1, s2, m - 1, n - 1, sb);
         }
 
-        return 1 + min(editDistance(s1, s2, m, n - 1),
-                editDistance(s1, s2, m - 1, n),
-                editDistance(s1, s2, m - 1, n - 1));
+        return 1 + min(editDistance(s1, s2, m, n - 1, sb),
+                editDistance(s1, s2, m - 1, n, sb),
+                editDistance(s1, s2, m - 1, n - 1, sb));
     }
 
     private static int min(int x, int y, int z) {

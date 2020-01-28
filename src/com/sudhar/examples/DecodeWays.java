@@ -5,6 +5,10 @@ public class DecodeWays {
     public static void main(String[] args) {
         System.out.println(noOfDecodeWays(new int[]{2, 2, 6}));
         System.out.println(countDecodingDP(new char[]{'2', '2', '6'}, 3));
+
+        A.C c = new A().new C();
+
+        A.B ab = new A.B();
     }
 
     public static int noOfDecodeWays(int[] a) {
@@ -58,12 +62,14 @@ public class DecodeWays {
         }
         return count[n];
     }
+}
 
-    class B {
+class A {
+    static class B {
 
     }
 
-    static class Static {
+    class C {
 
     }
 }

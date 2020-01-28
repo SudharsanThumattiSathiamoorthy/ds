@@ -76,7 +76,7 @@ public class KMP {
 
     public static void main(String[] args) {
         String text = "ababcabcabababd";
-        String pattern = "ababd";
+        String pattern = "aba";
 
         KMP kmp = new KMP();
         kmp.KMPSearch(pattern, text);

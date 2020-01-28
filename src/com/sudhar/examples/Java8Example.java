@@ -1,8 +1,6 @@
 package com.sudhar.examples;
 
 import java.util.*;
-import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -82,7 +80,7 @@ public class Java8Example {
         System.out.println(add.andThen(multiply).apply(3));
 
         System.out.println(map.entrySet().stream()
-                .filter(e -> e.getKey() % 2 == 0)
+                .filter(entrySet -> entrySet.getKey() % 2 == 0)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
         System.out.println(map.entrySet()
@@ -100,6 +98,15 @@ public class Java8Example {
 
         personList.sort(Comparator.comparing(Person::getName).thenComparing(Person::getAge));
 
-        System.out.println(personList.stream().sorted().collect(Collectors.groupingBy(Person::getAge)).entrySet());
+        System.out.println(personList.stream().sorted().collect(Collectors.groupingBy(Person::getAge, Collectors.groupingBy(Person::getName))));
+
+        System.out.println(personList.stream()
+                .collect(Collectors.toMap(
+                        p -> p.age,
+                        p -> p.name,
+                        (name1, name2) -> name1 + ";" + name2)));
+
+        System.out.println(l.stream()
+                .reduce((i1, i2) -> i1 + i2).get());
     }
 }

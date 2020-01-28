@@ -46,9 +46,9 @@ class CacheNode<K, V> {
 }
 
 public class LFUCache<K, V> {
-    Map<K, CacheNode> map = new HashMap<>();
-    Comparator<CacheNode> comparator = Comparator.comparing(CacheNode::getFrequency);
-    PriorityQueue<CacheNode> queue = new PriorityQueue<>(comparator);
+    Map<K, CacheNode<K, V>> map = new HashMap<>();
+    Comparator<CacheNode<K, V>> comparator = Comparator.comparing(CacheNode::getFrequency);
+    PriorityQueue<CacheNode<K, V>> queue = new PriorityQueue<>(comparator);
 
     int maxEntries;
 
@@ -56,8 +56,8 @@ public class LFUCache<K, V> {
         this.maxEntries = maxEntries;
     }
 
-    public CacheNode get(K key) {
-        CacheNode value = map.get(key);
+    public CacheNode<K, V> get(K key) {
+        CacheNode<K, V> value = map.get(key);
         if (value == null) {
             return null;
         }
@@ -71,7 +71,7 @@ public class LFUCache<K, V> {
     }
 
     public void set(K key, V value) {
-        CacheNode curr = map.get(key);
+        CacheNode<K, V> curr = map.get(key);
 
         if (curr != null) {
             curr.setValue(value);
@@ -81,9 +81,9 @@ public class LFUCache<K, V> {
             queue.add(curr);
         }
 
-        CacheNode newEntry = new CacheNode(key, value);
+        CacheNode<K, V> newEntry = new CacheNode<>(key, value);
         if (map.size() >= maxEntries) {
-            CacheNode remove = queue.poll();
+            CacheNode<K, V> remove = queue.poll();
 
             map.remove(remove.key);
         }

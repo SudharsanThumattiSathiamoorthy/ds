@@ -42,7 +42,6 @@ public class WallsAndFences {
         }
     }
 
-
     private static void fillDistances(int[][] a, boolean[][] visited, int i, int j, int r, int c, int distance) {
 
         if (i < 0 || i >= r || j < 0 || j >= c) {

@@ -35,6 +35,8 @@ public class KClosesPointsToOrigin {
             return null;
         }
 
+        Comparator<Point> tempSort = Comparator.comparing(Point::getDistance);
+
         Comparator<Point> sort = (p1, p2) -> p2.getDistance() - p1.getDistance() == 0 ? 0 : (p2.getDistance() - p1.getDistance() > 0 ? -1 : 1);
 
         PriorityQueue<Point> queue = new PriorityQueue<>(sort);
