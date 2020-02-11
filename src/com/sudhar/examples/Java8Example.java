@@ -110,3 +110,32 @@ public class Java8Example {
                 .reduce((i1, i2) -> i1 + i2).get());
     }
 }
+
+final class Singleton {
+    private Singleton() {
+
+    }
+
+    private Singleton instance;
+
+    private static class SingletonInstance {
+        private static final Singleton INSTANCE = new Singleton();
+    }
+
+    public static synchronized Singleton getSingleton() {
+        return SingletonInstance.INSTANCE;
+    }
+
+    public Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+                return instance;
+            }
+        }
+        return instance;
+    }
+}
+

@@ -94,19 +94,22 @@ public class LRUCache<K, V> {
     }
 
     public static void main(final String[] args) {
-        LRUCache<Integer, Integer> cache = new LRUCache<>(3);
+        LRUCache<Integer, Integer> cache = new LRUCache<>(1);
 
         cache.set(1, 1);
-        System.out.println(cache.get(1));
+        //System.out.println(cache.get(1));
 
         cache.set(2, 2);
-        System.out.println(cache.get(2));
+        //System.out.println(cache.get(2));
 
         System.out.println("Size : " + cache.size());
+
+        System.out.println(cache.get(1));
 
         cache.set(3, 3);
-        System.out.println(cache.get(3));
-        System.out.println("Size : " + cache.size());
+        //System.out.println(cache.get(3));
+        //System.out.println("Size : " + cache.size());
+        System.out.println(cache.get(2));
 
         cache.set(4, 4);
         System.out.println("Size : " + cache.size());

@@ -39,7 +39,7 @@ public class ShortestDistanceFromAllBuildings {
             }
         }
 
-        return -1;
+        return result;
     }
 
     private void findDistanceAndReach(int[][] grid, int[][] dis, int[][] reach, int i, int j) {

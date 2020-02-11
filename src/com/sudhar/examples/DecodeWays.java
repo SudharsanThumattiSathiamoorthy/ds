@@ -6,9 +6,12 @@ public class DecodeWays {
         System.out.println(noOfDecodeWays(new int[]{2, 2, 6}));
         System.out.println(countDecodingDP(new char[]{'2', '2', '6'}, 3));
 
-        A.C c = new A().new C();
+       // A.C c = new A().new C();
 
         A.B ab = new A.B();
+
+        A e = new E();
+        e.m1();
     }
 
     public static int noOfDecodeWays(int[] a) {
@@ -33,16 +36,14 @@ public class DecodeWays {
         return dp[a.length];
     }
 
-    static int countDecodingDP(char digits[], int n)
-    {
+    static int countDecodingDP(char digits[], int n) {
         // A table to store results of subproblems
         int count[] = new int[n + 1];
         count[0] = 1;
         count[1] = 1;
-        if(digits[0]=='0')   //for base condition "01123" should return 0
+        if (digits[0] == '0')   //for base condition "01123" should return 0
             return 0;
-        for (int i = 2; i <= n; i++)
-        {
+        for (int i = 2; i <= n; i++) {
             count[i] = 0;
 
             // If the last digit is not 0,
@@ -64,12 +65,41 @@ public class DecodeWays {
     }
 }
 
-class A {
+abstract class A {
     static class B {
 
+    }
+    public A() {
+        System.out.println("A cons");
     }
 
     class C {
 
     }
+
+    public void m1() {
+        System.out.println("from a");
+    }
+
+}
+
+class D extends  A {
+    public D() {
+        System.out.println("D cons");
+    }
+
+    public void m1() {
+        System.out.println("from d");
+    }
+}
+
+class E extends  D {
+    public E() {
+        System.out.println("E cons");
+    }
+
+
+//    public void m1() {
+//        System.out.println("from e");
+//    }
 }

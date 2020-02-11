@@ -1,6 +1,7 @@
 package com.sudhar.examples;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SubsetProblem {
 
@@ -98,7 +99,60 @@ public class SubsetProblem {
         int n = arr.length;
         int sum = 5;
 
-        printAllSubsets(arr, n, sum);
+        //printAllSubsets(arr, n, sum);
 
+
+        List<List<Integer>> result = new ArrayList<>();
+        findAllSubsets(arr, new int[arr.length], 0, 0, 5, result);
+
+        System.out.println(result);;
+    }
+
+    private static void findAllSubsets(int[] a, int[] visited, int ci, int currentSum, int targetSum, List<List<Integer>> result) {
+        if (currentSum == targetSum) {
+            findSubset(a, visited, ci, result);
+        } else if (ci == a.length) {
+            return;
+        } else {
+            visited[ci] = 1;
+            currentSum += a[ci];
+            findAllSubsets(a, visited, ci +1, currentSum, targetSum, result);
+
+            visited[ci] = 0;
+            currentSum -= a[ci];
+            findAllSubsets(a, visited, ci + 1, currentSum, targetSum, result);
+        }
+    }
+
+//    private static void findAllSubsets(int[] a, boolean[] visited, int ci, int sum, List<List<Integer>> result) {
+//        if (sum == 0) {
+//            findSubset(a, visited, ci, result);
+//
+//            return;
+//        } else if (ci == a.length) {
+//            return;
+//        } else {
+//            for (int i = ci; i < a.length; i++) {
+//                visited[i] = true;
+//                sum -= a[i];
+//                findAllSubsets(a, visited, ci + 1, sum, result);
+//                visited[i] = false;
+//                sum += a[i];
+//                findAllSubsets(a, visited, ci + 1, sum, result);
+//            }
+//        }
+//    }
+
+    private static void findSubset(int[] a, int[] visited, int ci, List<List<Integer>> result) {
+        List<Integer> temp = new ArrayList<>();
+        for (int i = 0; i < ci; i++) {
+            if (visited[i] == 1) {
+                temp.add(a[i]);
+            }
+        }
+
+        if (temp.size() != 0) {
+            result.add(temp);
+        }
     }
 }

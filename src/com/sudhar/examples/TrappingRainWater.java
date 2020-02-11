@@ -1,5 +1,8 @@
 package com.sudhar.examples;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TrappingRainWater {
 
     public static void main(final String[] args) {
