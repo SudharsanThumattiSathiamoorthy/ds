@@ -38,5 +38,6 @@ public class BlockingQueue<T> {
     }
 
     public static void main(final String[] args) {
+
     }
 }
