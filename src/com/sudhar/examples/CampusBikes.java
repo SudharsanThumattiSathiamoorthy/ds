@@ -18,8 +18,6 @@ public class CampusBikes {
         //max worker and bike distance is 2000
 
         List<int[]>[] buckets = new ArrayList[2001];
-        int[] res = new int[workers.length];
-        boolean[] visited = new boolean[bikes.length];
 
         for (int i = 0; i < workers.length; i++) {
             for (int j = 0; j < bikes.length; j++) {
@@ -30,6 +28,8 @@ public class CampusBikes {
                 buckets[dis].add(new int[]{i, j});
             }
         }
+        int[] res = new int[workers.length];
+        boolean[] visited = new boolean[bikes.length];
 
         Arrays.fill(res, -1);
 

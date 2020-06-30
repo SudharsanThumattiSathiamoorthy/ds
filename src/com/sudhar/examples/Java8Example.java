@@ -98,7 +98,7 @@ public class Java8Example {
 
         personList.sort(Comparator.comparing(Person::getName).thenComparing(Person::getAge));
 
-        System.out.println(personList.stream().sorted().collect(Collectors.groupingBy(Person::getAge, Collectors.groupingBy(Person::getName))));
+        //System.out.println(personList.stream().sorted().collect(Collectors.groupingBy(Person::getAge, Collectors.groupingBy(Person::getName))));
 
         System.out.println(personList.stream()
                 .collect(Collectors.toMap(
@@ -108,6 +108,12 @@ public class Java8Example {
 
         System.out.println(l.stream()
                 .reduce((i1, i2) -> i1 + i2).get());
+
+        String s = "3[a]2[bc]";
+
+        for (char c : s.toCharArray()) {
+            System.out.println(c + " " + Character.isDigit(c));
+        }
     }
 }
 
@@ -137,5 +143,7 @@ final class Singleton {
         }
         return instance;
     }
+
+
 }
 

@@ -18,16 +18,16 @@ public class NextLargestNumber {
             return;
         }
 
-        int i = a.length-1;
+        int i = a.length - 1;
         for (; i >= 0; i--) {
-            if (a[i-1] > a[i]) {
+            if (a[i - 1] > a[i]) {
                 continue;
             } else {
                 break;
             }
         }
 
-        int x = i -1;
+        int x = i - 1;
 
         int min = findMinNo(a, i);
 

@@ -12,7 +12,7 @@ public class Seggregate012 {
     }
 
     public static void main(final String[] args) {
-        final int a[] = {0, 1, 2, 0, 1, 2};
+        final int a[] = {1,2,0};
 
         int low = 0, mid = 0, high = a.length - 1;
 

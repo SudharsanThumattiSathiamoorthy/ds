@@ -42,14 +42,11 @@ public class TopNBuzzWord {
             }
         }
 
-        PriorityQueue<String> queue = new PriorityQueue<>(new Comparator<String>() {
-            @Override
-            public int compare(String w1, String w2) {
-                if (map.get(w1) == map.get(w2)) {
-                    return w1.compareTo(w2);
-                } else {
-                    return Integer.compare(map.get(w1), map.get(w2));
-                }
+        PriorityQueue<String> queue = new PriorityQueue<>((w1, w2) -> {
+            if (map.get(w1) == map.get(w2)) {
+                return w1.compareTo(w2);
+            } else {
+                return Integer.compare(map.get(w1), map.get(w2));
             }
         });
 
