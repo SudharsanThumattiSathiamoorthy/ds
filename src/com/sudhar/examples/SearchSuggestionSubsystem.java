@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// https://leetcode.com/problems/search-suggestions-system/
+// https://leetcode.com/problems/search-suggestions-system/ - Amazon
 public class SearchSuggestionSubsystem {
 
     static class SearchTrieNode {
