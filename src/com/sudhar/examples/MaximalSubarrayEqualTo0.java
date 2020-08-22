@@ -16,7 +16,7 @@ public class MaximalSubarrayEqualTo0 {
             return -1;
         }
 
-        int sum = 0, max = -1;
+        int sum = 0, max = 0;
         Map<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < a.length; i++) {
