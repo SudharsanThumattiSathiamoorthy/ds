@@ -2,20 +2,21 @@ package com.sudhar.examples;
 
 import java.util.Stack;
 
+// Infix to postfix conversion.
 public class DecodeString {
 
     public static void main(String[] args) {
         DecodeString ds = new DecodeString();
 
-                System.out.println(ds.decodeString("3[a]2[bc]"));
-        System.out.println(ds.decodeString("3[a2[c]]"));
-                System.out.println(ds.decodeString("2[abc]3[cd]ef"));
-                System.out.println(ds.decodeString("abc3[cd]xyz"));
-
-               System.out.println(ds.decodeString("3[a]2[bc]").equals("aaabcbc"));
-        System.out.println(ds.decodeString("3[a2[c]]").equals("accaccacc"));
-                System.out.println(ds.decodeString("2[abc]3[cd]ef").equals("abcabccdcdcdef"));
-                System.out.println(ds.decodeString("abc3[cd]xyz").equals("abccdcdcdxyz"));
+//                System.out.println(ds.decodeString("3[a]2[bc]"));
+//        System.out.println(ds.decodeString("3[a2[c]]"));
+//                System.out.println(ds.decodeString("2[abc]3[cd]ef"));
+//                System.out.println(ds.decodeString("abc3[cd]xyz"));
+//
+//               System.out.println(ds.decodeString("3[a]2[bc]").equals("aaabcbc"));
+//        System.out.println(ds.decodeString("3[a2[c]]").equals("accaccacc"));
+//                System.out.println(ds.decodeString("2[abc]3[cd]ef").equals("abcabccdcdcdef"));
+//                System.out.println(ds.decodeString("abc3[cd]xyz").equals("abccdcdcdxyz"));
 
         System.out.println(ds.decodeString( "100[leetcode]"));
     }
@@ -26,9 +27,6 @@ public class DecodeString {
         }
 
         Stack<String> stack = new Stack<>();
-
-        StringBuilder result = new StringBuilder();
-
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
 
@@ -61,7 +59,7 @@ public class DecodeString {
 
     private String getNumbers(Stack<String> stack) {
         String temp = "";
-        while (!stack.isEmpty() && !stack.peek().equals("[") && stack.peek().length() == 1 && Character.isDigit(stack.peek().toCharArray()[0])) {
+        while (!stack.isEmpty() && !stack.peek().equals("[") && Character.isDigit(stack.peek().toCharArray()[0])) {
             String pop = stack.pop() + temp;
             temp = pop;
         }

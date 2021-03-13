@@ -19,6 +19,7 @@ public class ReorganizeString {
                 return e2.getValue()-e1.getValue();
             }
         });
+
         pq.addAll(freq.entrySet());
         Queue<Map.Entry<Character, Integer>> blacklist = new LinkedList<>();
         while(!pq.isEmpty()){
@@ -39,5 +40,59 @@ public class ReorganizeString {
             if(k > 0) return ""; //if idle slots allowed, we need k slots here
         }
         return sb.toString();
+    }
+
+    class MySolution {
+        public String reorganizeString(String s) {
+
+            if (s == null || s.length() == 0) {
+                return "";
+            }
+
+            Map<Character, Integer> map = new HashMap<>();
+
+            for (char c: s.toCharArray()) {
+                map.put(c, map.getOrDefault(c, 0) + 1);
+            }
+
+            StringBuffer sb = new StringBuffer();
+
+            PriorityQueue<Map.Entry<Character, Integer>> queue = new PriorityQueue<>((a,b) -> b.getValue() - a.getValue());
+
+            queue.addAll(map.entrySet());
+
+
+            Queue<Map.Entry<Character, Integer>> blackList = new LinkedList<>();
+
+            while(!queue.isEmpty()) {
+                int k = 2;
+
+                while (k > 0 && !queue.isEmpty()) {
+                    Map.Entry<Character, Integer> entry = queue.poll();
+                    entry.setValue(entry.getValue() - 1);
+                    blackList.add(entry);
+                    sb.append(entry.getKey());
+                    k--;
+                }
+
+                while (!blackList.isEmpty()) {
+                    Map.Entry<Character, Integer> entry = blackList.poll();
+
+                    if (entry.getValue() > 0) {
+                        queue.add(entry);
+                    }
+                }
+
+                if (queue.isEmpty()) {
+                    break;
+                }
+
+                if (k > 0) {
+                    return "";
+                }
+            }
+
+            return sb.toString();
+        }
     }
 }

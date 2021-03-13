@@ -9,49 +9,57 @@ public class NextLargestNumber {
 
         char[] a = String.valueOf(no).toCharArray();
 
-        findNextLargestNo(a);
+        nextGreaterElement(no);
+
+        nextGreaterElement(2147483476);
     }
 
-    private static void findNextLargestNo(char[] a) {
-
-        if (a == null || a.length == 0) {
-            return;
+    public static int nextGreaterElement(int n) {
+        if (n <= 0) {
+            return -1;
         }
 
-        int i = a.length - 1;
-        for (; i >= 0; i--) {
-            if (a[i - 1] > a[i]) {
-                continue;
-            } else {
-                break;
-            }
+        String no = String.valueOf(n);
+
+        char[] nos = no.toCharArray();
+
+        int i = nos.length - 1;
+
+        while (i > 0 && nos[i - 1] >= nos[i]) {
+            i--;
+        }
+
+        if (i == 0) {
+            return -1;
         }
 
         int x = i - 1;
 
-        int min = findMinNo(a, i);
+        int minIndex = findMinIndex(nos, i, x);
 
-        swap(a, x, min);
+        swap(nos, x, minIndex);
 
-        Arrays.sort(a, i, a.length);
+        Arrays.sort(nos, i, nos.length);
+        // System.out.println("No :" + new String(nos));
 
-        System.out.println(Arrays.toString(a));
+        long val = Long.valueOf(new String(nos));
+        return val <= Integer.MAX_VALUE ? (int) val : -1;
     }
 
-    private static int findMinNo(char[] a, int i) {
-        int min = i;
-
-        for (int k = i+1; k < a.length; k++) {
-            if (a[k] < a[min]) {
-                min = k;
+    private static int findMinIndex(char[] a, int index, int x) {
+        int minIndex = index;
+        char sNo = a[x];
+        for (int i = index + 1; i < a.length; i++) {
+            if (a[i] > sNo && a[i] <= a[minIndex]) {
+                minIndex = i;
             }
         }
-        return min;
+        return minIndex;
     }
 
-    private static void swap(char[] a, int x, int k) {
-        char temp = a[x];
-        a[x] = a[k];
-        a[k] = temp;
+    private static void swap(char[] nos, int i, int j) {
+        char temp = nos[i];
+        nos[i] = nos[j];
+        nos[j] = temp;
     }
 }

@@ -15,12 +15,17 @@ public class MatrixRotation {
         int N = a.length;
 
         for (int x= 0; x < N / 2; x++) {
+            System.out.println("x: " + x + "\n");
             for (int y = x; y < N-1-x; y++ ) {
+                System.out.println("y: " + y + "\n");
                 int temp = a[x][y];
                 a[x][y] = a[y][N-1-x];
                 a[y][N-1-x] = a[N-1-x][N-1-y];
                 a[N-1-x][N-1-y]=a[N-1-y][x];
                 a[N-1-y][x]=temp;
+
+                MatrixUtil.printMatrix(a);
+                System.out.println();
             }
         }
 

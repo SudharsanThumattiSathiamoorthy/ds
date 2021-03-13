@@ -19,18 +19,23 @@ public class UniquePathsInTheMatrix {
         }
 
         System.out.println(dp[m-1][n-1]);
+
+        int[][] a = new int[m][n];
+
+        System.out.println(uniquePaths(a, 0, 0));
+
     }
 
     // Another solution.
-    private int uniquePaths(int[][] a, int i, int j) {
-        if (i == 0|| j == 0 || a[i][j] == 0) {
+    private static int uniquePaths(int[][] a, int i, int j) {
+        if (i >= a.length || j >= a[0].length) {
             return 0;
         }
 
-        if (i == a.length -1 && j == a[0].length - 1 && a[i][j] == 1) {
+        if (i == a.length -1 && j == a[0].length - 1) {
             return 1;
         }
 
-        return uniquePaths(a, i+1, j) + uniquePaths(a, i-1, j);
+        return uniquePaths(a, i+1, j) + uniquePaths(a, i, j + 1);
     }
 }

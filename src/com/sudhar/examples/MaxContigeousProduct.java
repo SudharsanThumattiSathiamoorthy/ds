@@ -1,5 +1,10 @@
 package com.sudhar.examples;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class MaxContigeousProduct {
 
 //    public static void main(final String[] args) {
@@ -26,6 +31,24 @@ public class MaxContigeousProduct {
 //        }
 //        System.out.println(max_so_far);
 //    }
+
+    public static void main(final String[] args) {
+        Set<Set<Integer>> result = new HashSet<>();
+
+        List<List<Integer>> resultList = new ArrayList<>();
+
+        for (Set<Integer> set: result) {
+            List<Integer> list = new ArrayList<>();
+            list.addAll(set);
+            resultList.add(list);
+        }
+
+    }
+
+
+
+
+
 
 
 }

@@ -81,8 +81,8 @@ public class LRUCache<K, V> {
             Cache newCache = new Cache(key, value);
 
             if (map.size() >= capacity) {
-                remove(tail);
                 map.remove(tail.key);
+                remove(tail);
             }
             map.put(key, newCache);
             setHead(newCache);

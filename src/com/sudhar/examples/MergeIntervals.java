@@ -2,6 +2,7 @@ package com.sudhar.examples;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class MergeIntervals {
@@ -18,7 +19,7 @@ public class MergeIntervals {
             return intervals;
         }
 
-        Arrays.sort(intervals, (arr1, arr2) -> Integer.compare(arr1[0], arr2[0]));
+        Arrays.sort(intervals, Comparator.comparingInt(arr -> arr[0]));
 
         int[] curr = intervals[0];
         List<int[]> result = new ArrayList<>();
