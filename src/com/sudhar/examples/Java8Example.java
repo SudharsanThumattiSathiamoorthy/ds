@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static java.lang.System.*;
+
 class Person {
     String name;
     int age;
@@ -40,7 +42,7 @@ public class Java8Example {
         list.add("three");
         list.add("one");
 
-        System.out.println(list
+        out.println(list
                 .stream()
                 .limit(4)
                 .distinct()
@@ -48,7 +50,7 @@ public class Java8Example {
 
         List<Integer> l = Arrays.asList(1, 2, 3, 4, 4);
 
-        System.out.println(l.stream()
+        out.println(l.stream()
                 .reduce(0, (prev, num) -> {
                     return prev + num;
                 }));
@@ -57,7 +59,7 @@ public class Java8Example {
 
         l.stream().reduce(0, (prev, curr) -> prev + curr);
 
-        System.out.println(list.stream()
+        out.println(list.stream()
                 .filter(Objects::nonNull)
                 .map(v -> v.toLowerCase())
                 .map(v -> v.toUpperCase())
@@ -66,24 +68,24 @@ public class Java8Example {
 
         Map<Integer, Integer> map = Map.of(1, 2, 3, 4, 5, 6);
 
-        System.out.println(map.entrySet().stream()
+        out.println(map.entrySet().stream()
                 .filter(e -> e.getKey() % 2 != 0)
                 .count());
 
-        System.out.println(map.entrySet().stream()
+        out.println(map.entrySet().stream()
                 .filter(e -> e.getKey() % 2 != 0)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
         Function<Integer, Integer> add = (n1) -> n1 + n1;
         Function<Integer, Integer> multiply = (n2) -> n2 * 2;
 
-        System.out.println(add.andThen(multiply).apply(3));
+        out.println(add.andThen(multiply).apply(3));
 
-        System.out.println(map.entrySet().stream()
+        out.println(map.entrySet().stream()
                 .filter(entrySet -> entrySet.getKey() % 2 == 0)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
 
-        System.out.println(map.entrySet()
+        out.println(map.entrySet()
                 .stream()
                 .collect(Collectors.groupingBy(Map.Entry::getKey)));
 
@@ -100,19 +102,19 @@ public class Java8Example {
 
         //System.out.println(personList.stream().sorted().collect(Collectors.groupingBy(Person::getAge, Collectors.groupingBy(Person::getName))));
 
-        System.out.println(personList.stream()
+        out.println(personList.stream()
                 .collect(Collectors.toMap(
                         p -> p.age,
                         p -> p.name,
                         (name1, name2) -> name1 + ";" + name2)));
 
-        System.out.println(l.stream()
+        out.println(l.stream()
                 .reduce((i1, i2) -> i1 + i2).get());
 
         String s = "3[a]2[bc]";
 
         for (char c : s.toCharArray()) {
-            System.out.println(c + " " + Character.isDigit(c));
+            out.println(c + " " + Character.isDigit(c));
         }
     }
 }

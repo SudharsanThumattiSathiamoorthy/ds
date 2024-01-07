@@ -127,4 +127,49 @@ public class LongestSubstringwithAtMostKDistinctCharacters {
             return max_len;
         }
     }
+
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        if (s == null || s.length() == 0 || k <= 0) {
+            return 0;
+        }
+
+        // char => its count in window
+        Map<Character, Integer> map = new HashMap<>();
+        int maxLen = 0;
+        int left = 0;
+        int right = 0;
+
+        for (right = 0; right < s.length(); right++) {
+            char c = s.charAt(right);
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+
+            // if distinct chars more than k
+            if (map.size() > k) {
+                maxLen = Math.max(maxLen, right - left);
+
+                // Shrink the window size
+                while (map.size() > k) { // can be done by another counter variable
+                    char leftChar = s.charAt(left);
+                    int freq = map.get(leftChar);
+                    if (freq == 1) {
+                        map.remove(leftChar); // @note: remove by key
+                    } else {
+                        map.put(leftChar, freq - 1);
+                    }
+                    left++;
+                }
+            }
+        }
+
+        // @note: final check
+        if (left < s.length()) {
+            maxLen = Math.max(maxLen, right - left);
+        }
+
+        return maxLen;
+    }
 }

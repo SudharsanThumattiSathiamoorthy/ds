@@ -15,13 +15,15 @@ public class AllCombinationFromKeyPad {
 
     public static void findAllCombination(String phoneNo, int currentIndex, StringBuilder intermediateResult) {
         if (phoneNo.length() == currentIndex) {
-            System.out.println(intermediateResult.toString());
+            //System.out.println(intermediateResult.toString());
         }
         else {
             String curr = MAP.get(phoneNo.charAt(currentIndex) - '0');
             for (int i = 0; i < curr.length(); i++) {
                 intermediateResult.append(curr.charAt(i));
-                findAllCombination(phoneNo, currentIndex + 1, intermediateResult);
+
+                System.out.println("Intermediate result : " + intermediateResult);
+                // findAllCombination(phoneNo, currentIndex + 1, intermediateResult);
 
                 intermediateResult.deleteCharAt(intermediateResult.length() - 1);
             }

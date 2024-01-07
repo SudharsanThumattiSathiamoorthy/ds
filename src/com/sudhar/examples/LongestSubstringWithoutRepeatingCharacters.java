@@ -3,7 +3,9 @@ package com.sudhar.examples;
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 //Amazon
 //        |
@@ -78,63 +80,86 @@ import java.util.Map;
 //        2
 public class LongestSubstringWithoutRepeatingCharacters {
 
-
-    public int substring(String s) {
+    public int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
 
-        Map<Character, Integer> sMap = new HashMap<>();
-        for (char c : s.toCharArray()) {
-            int count = sMap.getOrDefault(c, 0);
-            sMap.put(c, count + 1);
+        final Set<Character> uniqueChars = new HashSet<>();
+
+        int startIndex = 0, endIndex = 0, maxLen = 0;
+        char[] word = s.toCharArray();
+
+        while (endIndex < word.length) {
+            if (!uniqueChars.contains(word[endIndex])) {
+                uniqueChars.add(word[endIndex]);
+                endIndex++;
+                maxLen = Math.max(maxLen, uniqueChars.size());
+            } else {
+                uniqueChars.remove(word[startIndex]);
+                startIndex++;
+            }
         }
 
-        int target = sMap.size();
-        int l = 0, r = s.length(), i = 0;
-
-        Map<Character, Integer> wMap = new HashMap<>();
-        int count = 0;
-        int[] result = new int[3];
-        result[0] = 1;
-
-        while (i < r) {
-            char c = s.charAt(i);
-            int occurrence = wMap.getOrDefault(c, 0);
-
-            if (occurrence == 0) {
-                count++;
-            }
-            wMap.put(c, occurrence + 1);
-
-            while (count == target && l < i) {
-                int diff = result[2] - result[1];
-                if (result [0] == 1 || i - l + 1 < diff) {
-                    result[0] = i - l + 1;
-                    result[1] = l;
-                    result[2] = i;
-                }
-
-                char charToBeRemoved = s.charAt(l);
-                int wCount = wMap.get(charToBeRemoved);
-                if (wCount - 1 == 0) {
-                    count--;
-                }
-                wMap.put(charToBeRemoved, wCount - 1);
-                l++;
-            }
-            i++;
-        }
-
-        System.out.println(s.substring(result[1], result[2] + 1));
-        return result[0] == 1 ? 1 :  result[2] - result[1] + 1;
-
+        return maxLen;
     }
+
+//    public int substring(String s) {
+//        if (s == null || s.length() == 0) {
+//            return 0;
+//        }
+//
+//        Map<Character, Integer> sMap = new HashMap<>();
+//        for (char c : s.toCharArray()) {
+//            int count = sMap.getOrDefault(c, 0);
+//            sMap.put(c, count + 1);
+//        }
+//
+//        int target = sMap.size();
+//        int l = 0, r = s.length(), i = 0;
+//
+//        Map<Character, Integer> wMap = new HashMap<>();
+//        int count = 0;
+//        int[] result = new int[3];
+//        result[0] = 1;
+//
+//        while (i < r) {
+//            char c = s.charAt(i);
+//            int occurrence = wMap.getOrDefault(c, 0);
+//
+//            if (occurrence == 0) {
+//                count++;
+//            }
+//            wMap.put(c, occurrence + 1);
+//
+//            while (count == target && l < i) {
+//                int diff = result[2] - result[1];
+//                if (result [0] == 1 || i - l + 1 < diff) {
+//                    result[0] = i - l + 1;
+//                    result[1] = l;
+//                    result[2] = i;
+//                }
+//
+//                char charToBeRemoved = s.charAt(l);
+//                int wCount = wMap.get(charToBeRemoved);
+//                if (wCount - 1 == 0) {
+//                    count--;
+//                }
+//                wMap.put(charToBeRemoved, wCount - 1);
+//                l++;
+//            }
+//            i++;
+//        }
+//
+//        System.out.println(s.substring(result[1], result[2] + 1));
+//        return result[0] == 1 ? 1 :  result[2] - result[1] + 1;
+//
+//    }
 
     public static void main(String[] a) {
 
         LongestSubstringWithoutRepeatingCharacters l = new LongestSubstringWithoutRepeatingCharacters();
-        System.out.println(l.substring("abcabcbb"));
+        System.out.println(l.lengthOfLongestSubstring("abcabcbb"));
     }
 
 }

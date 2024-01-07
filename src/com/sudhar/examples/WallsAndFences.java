@@ -21,7 +21,6 @@ public class WallsAndFences {
             return;
         }
 
-
         int r = a.length;
         int c = a[0].length;
 

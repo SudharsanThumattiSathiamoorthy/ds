@@ -1,5 +1,6 @@
 package com.sudhar.examples;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,10 @@ public class DiffWaysToAddParantheses {
 
         // System.out.println(diff.diffWaysToCompute(input));
 
+        final long startTime = System.currentTimeMillis();
         System.out.println(diff.diffWaysToCompute("2-1-1"));
+        final long endTime = System.currentTimeMillis();
+        System.out.printf("Time take to post audit records to Range Admin : [%s]", Duration.ofMillis(endTime).minusMillis(startTime).toString());
     }
 
     public List<Integer> diffWaysToCompute(String input) {

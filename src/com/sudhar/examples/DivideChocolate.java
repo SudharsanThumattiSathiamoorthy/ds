@@ -30,24 +30,24 @@ public class DivideChocolate {
 
     class Solution {
         public int maximizeSweetness(int[] sweetness, int K) {
-            if (sweetness == null || sweetness.length<K+1) return 0;
+            if (sweetness == null || sweetness.length < K + 1) return 0;
             int sum = 0;
-            for (int i=0; i<sweetness.length; i++) {
-                sum+=sweetness[i];
+            for (int i = 0; i < sweetness.length; i++) {
+                sum += sweetness[i];
             }
 
-            if (K==0) return sum;
+            if (K == 0) return sum;
 
-            int left=0;
-            int right=sum/K + sum%K;
+            int left = 0;
+            int right = sum / K + sum % K;
             int ans = 0;
-            while(left<=right) {
-                int mid = left + ((right-left)/2);
+            while (left <= right) {
+                int mid = left + ((right - left) / 2);
                 if (can(sweetness, mid, K)) {
                     ans = mid;
-                    left = mid+1;
+                    left = mid + 1;
                 } else {
-                    right = mid-1;
+                    right = mid - 1;
                 }
             }
             return ans;
@@ -56,8 +56,8 @@ public class DivideChocolate {
         private boolean can(int[] arr, int min, int K) {
             int count = 0;
             int sum = 0;
-            for (int i=0; i<arr.length; i++) {
-                sum+=arr[i];
+            for (int i = 0; i < arr.length; i++) {
+                sum += arr[i];
                 if (sum >= min) {
                     count++;
                     sum = 0;
